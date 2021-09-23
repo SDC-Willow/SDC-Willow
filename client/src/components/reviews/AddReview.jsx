@@ -3,7 +3,6 @@ import React from 'react';
 import postReview from '../../helpers/reviews/postReview.js';
 import StarRating from './StarRating.jsx';
 import AddDescription from './AddDescription.jsx';
-import interactions from '../../helpers/reviews/interactions.js';
 class AddReview extends React.Component {
   constructor (props) {
     super(props);
@@ -33,7 +32,6 @@ class AddReview extends React.Component {
         }, () => console.log(this.state));
       }
     });
-    interactions('input');
   }
 
   summary (e) {
@@ -53,7 +51,6 @@ class AddReview extends React.Component {
     this.setState({
       recommend: e.target.value === 'Yes'
     });
-    interactions('input');
   }
 
   name (e) {
@@ -72,19 +69,17 @@ class AddReview extends React.Component {
     this.setState({
       rating: rating
     });
-    interactions('span');
   }
 
   sendData (e) {
     e.preventDefault();
-    if (!this.formValidate()) {
-      alert('You must enter the following: Any mandatory fields are blank, The review body is less than 50 characters, The email address provided is not in correct email format or The images selected are invalid or unable to be uploaded');
-      return;
-    };
+    // if (!this.formValidate()) {
+    //   alert('You must enter the following: Any mandatory fields are blank, The review body is less than 50 characters, The email address provided is not in correct email format or The images selected are invalid or unable to be uploaded');
+    //   return;
+    // };
     postReview(this.state).then((results) => {
       this.props.getProductDetails();
     });
-    interactions('button');
   }
 
   upload (e) {
@@ -95,18 +90,17 @@ class AddReview extends React.Component {
     this.setState({
       file: image
     }, () => console.log(this.state.file));
-    interactions('input');
   }
 
-  formValidate () {
-    if (Object.keys(this.state.characteristics).length !== this.props.characteristics.length) {
-      return false;
-    }
-    if (this.state.bodyRemaining > 0 || this.state.rating === null || this.state.recommended === null || this.state.name === null) {
-      return false;
-    }
-    return true;
-  }
+  // formValidate () {
+  //   if (Object.keys(this.state.characteristics).length !== this.props.characteristics.length) {
+  //     return false;
+  //   }
+  //   if (this.state.bodyRemaining > 0 || this.state.rating === null || this.state.recommended === null || this.state.name === null) {
+  //     return false;
+  //   }
+  //   return true;
+  // }
 
   render () {
     return (

@@ -1,9 +1,11 @@
 import axios from 'axios';
 
 const increaseHelp = (reviewId) => {
-  console.log(reviewId);
-  axios.put('/atelier/reviews/helpful', {
-    review_Id: reviewId
+  console.log('🐿', reviewId);
+  axios.put('/atelier/reviews/helpful', null, {
+    params: {
+      review_id: reviewId
+    }
   });
 };
 
