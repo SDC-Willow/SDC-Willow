@@ -22,7 +22,6 @@ class List extends React.Component {
   parseDate (date) {
     
     const newDate = new Date(date * 1000);
-    console.log('🐼', date);
     const day = newDate.getDate().toString();
     const month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(newDate).toString();
     const year = newDate.getFullYear().toString();
