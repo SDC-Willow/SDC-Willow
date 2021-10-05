@@ -9,7 +9,7 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get('/productStyles', (req, res) => {
-  axios.get(`${apiURL}products/${req.query.productId}/styles`, {
+  axios.get(`http://localhost:3000/products/${req.query.productId}/styles`, {
     headers: {
       Authorization: apiToken
     }
@@ -24,7 +24,7 @@ router.get('/productStyles', (req, res) => {
 });
 
 router.get('/product', (req, res) => {
-  axios.get(`${apiURL}products/${req.query.productId}`, {
+  axios.get(`http://localhost:3000/products/${req.query.productId}`, {
     headers: {
       Authorization: apiToken
     }
@@ -39,7 +39,7 @@ router.get('/product', (req, res) => {
 });
 
 router.post('/cart', (req, res) => {
-  axios.post(`${apiURL}cart`, req.body, {
+  axios.post(`http://localhost:3000/cart`, req.body, {
     headers: {
       Authorization: apiToken
     }

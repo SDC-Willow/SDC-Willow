@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getReviews, getMeta, putHelp, postReview, putReport, postInteraction } = require('../helpers/reviews_helpers.js');
+const { getReviews, getMeta, putHelp, postReview, putReport } = require('../helpers/reviews_helpers.js');
 
 router.get('/reviews', (req, res) => {
   getReviews(req.query.productId, req.query.sort).then((results) => {

@@ -67,7 +67,7 @@ class RelatedLists extends React.Component {
   }
 
   addToUserOutfits (e, index, list) {
-    const outfit = this.state.[list][index];
+    const outfit = this.state[list][index];
     let newOutfitItem = true;
     this.state.userOutfits.forEach((existingOutfit, i) => {
       if (existingOutfit.id === outfit.id) {
