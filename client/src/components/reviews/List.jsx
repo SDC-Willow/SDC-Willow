@@ -4,7 +4,6 @@ import React from 'react';
 import increaseHelp from '../../helpers/reviews/helpfulness.js';
 import StarsGlobal from './StarsGlobal.jsx';
 import axios from 'axios';
-import interactions from '../../helpers/reviews/interactions.js';
 /* eslint-disable react/prop-types */
 
 class List extends React.Component {
@@ -21,7 +20,8 @@ class List extends React.Component {
   }
 
   parseDate (date) {
-    const newDate = new Date(date);
+    
+    const newDate = new Date(date * 1000);
     const day = newDate.getDate().toString();
     const month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(newDate).toString();
     const year = newDate.getFullYear().toString();
@@ -29,7 +29,7 @@ class List extends React.Component {
   }
 
   increaseHelfpulness () {
-    console.log(this.props.review);
+    console.log('🎄', this.props.review.review_id);
     if (!this.state.isClicked) {
       increaseHelp(this.props.review.review_id);
       this.props.review.helpfulness += 1;
@@ -38,7 +38,6 @@ class List extends React.Component {
       });
       this.props.reSortList();
     }
-    interactions('button');
   }
 
   expandImage (e) {
@@ -47,30 +46,26 @@ class List extends React.Component {
       imageClick: !this.state.imageClick,
       src: e.target.src
     });
-    interactions('img');
   }
 
   closeImage () {
     this.setState({
       imageClick: false
     });
-    interactions('img');
   }
 
   showMoreOrLess () {
     this.setState({
       notClicked: !this.state.notClicked
     });
-    interactions('button');
   }
 
   reportReview (review_id) {
     if (!this.state.wasReported) {
-      axios.put('/atelier/reviews/report', { review_id: review_id }).then(() => this.setState({
+      axios.put('/atelier/reviews/report', null, { params: {review_id: review_id }}).then(() => this.setState({
         wasReported: true
       })).catch((err) => console.log('failed to report'));
     }
-    interactions('button');
   }
 
   render () {

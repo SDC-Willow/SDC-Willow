@@ -34,7 +34,7 @@ router.get('/product', (req, res) => {
     })
     .catch((err) => {
       console.log('error in axios product', err);
-      res.status(400).send('error in app.get product info', err);
+      res.status(400).send(err);
     });
 });
 
